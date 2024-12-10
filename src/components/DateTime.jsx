@@ -1,20 +1,12 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
-const DateTime = () => {
-  const date = useSelector((state) => state.date.date); // Отримуємо дату з Redux
-  const dispatch = useDispatch();
-
-  // Функція для оновлення дати
-  const updateDate = () => {
-    dispatch({ type: 'UPDATE_DATE', payload: new Date() });
-  };
-
+const DateTime = ({ date, updateDate }) => {
   // Використовуємо useEffect для оновлення дати кожну секунду
   useEffect(() => {
     const interval = setInterval(updateDate, 1000); // Оновлюємо дату кожну секунду
     return () => clearInterval(interval); // Очищуємо інтервал при розмонтуванні
-  }, [dispatch]);
+  }, [updateDate]);
 
   return (
     <div>
@@ -23,4 +15,15 @@ const DateTime = () => {
   );
 };
 
-export default DateTime;
+// Функція для отримання даних з Redux
+const mapStateToProps = (state) => ({
+  date: state.date.date,
+});
+
+// Функція для оновлення дати
+const mapDispatchToProps = (dispatch) => ({
+  updateDate: () => dispatch({ type: 'UPDATE_DATE', payload: new Date() }),
+});
+
+// Підключення компонента до Redux
+export default connect(mapStateToProps, mapDispatchToProps)(DateTime);

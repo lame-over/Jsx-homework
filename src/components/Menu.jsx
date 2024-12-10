@@ -1,9 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import MenuItem from "./MenuItem";
 
-const Menu = () => {
-  const menuItems = useSelector((state) => state.menu.menuItems); // Отримуємо меню з Redux
+const Menu = ({ menuItems }) => {
 
   return (
     <ul style={{ listStyle: "none", padding: 0 }}>
@@ -16,4 +15,10 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+// Функція для отримання даних з Redux
+const mapStateToProps = (state) => ({
+  menuItems: state.menu.menuItems,
+});
+
+// Підключення компонента до Redux
+export default connect(mapStateToProps)(Menu);

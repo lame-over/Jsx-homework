@@ -1,25 +1,15 @@
 import React from "react";
 import Header from "./components/Header";
-import Sidebar from "./components/SideBar";
-import Content from "./components/Content";
+import Posts from "./components/API/PostComponent"; // Import the Posts component
 import Footer from "./components/Footer";
-import { getId } from "./components/helpers";
-
-console.log(getId("menu-item"));
-console.log(getId("menu-item"));
-
-console.log(getId("abcd"));
-console.log(getId("abcd"));
-console.log(getId());
 
 function App() {
   return (
     <div style={styles.app}>
       <Header />
-      <div style={styles.main}>
-        <Sidebar />
-        <Content />
-      </div>
+      <main style={styles.main}>
+        <Posts /> {/* Render the Posts component */}
+      </main>
       <Footer />
     </div>
   );
@@ -34,10 +24,8 @@ const styles = {
   main: {
     display: "flex",
     flex: 1,
-    marginTop: "50px", // Відступ для Header
+    marginTop: "50px", // Offset for Header
   },
 };
-
-
 
 export default App;

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Posts from "./components/API/PostComponent"; // Import the Posts component
 import Footer from "./components/Footer";
 
+
 function App() {
   return (
     <div style={styles.app}>
